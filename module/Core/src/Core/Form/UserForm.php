@@ -5,8 +5,6 @@ namespace Core\Form;
 use Zend\Form\Form;
 use Zend\InputFilter\InputFilter;
 
-
-
 /**
  * User Form Class
  */

@@ -52,7 +52,7 @@ class DoctrineUserService implements UserServiceInterface
      * Find user by ID
      *
      * @param int $id
-     * @return User
+     * @return Core\Entity\User
      */
     public function find($id)
     {
@@ -62,7 +62,7 @@ class DoctrineUserService implements UserServiceInterface
     /**
      * Create user
      *
-     * @param User $user
+     * @param Core\Entity\User $user
      */
     public function create($user)
     {
