@@ -35,6 +35,21 @@ class Module implements AutoloaderProviderInterface
         return include __DIR__ . '/config/module.config.php';
     }
 
+    public function getInputFilterConfig()
+    {
+        return include __DIR__ . '/config/input_filters.config.php';
+    } 
+
+    public function getControllerConfig() 
+    {
+        return include __DIR__ . '/config/controllers.config.php';
+    }
+
+    public function getServiceConfig()
+    {
+        return include __DIR__ . '/config/services.config.php';
+    }
+
     public function onBootstrap(MvcEvent $e)
     {
         // You may not need to do this if you're doing it elsewhere in your
