@@ -68,3 +68,14 @@ to the above URI.
 To create a new user, you need to send the POST-data
 as JSON with a request header of `application/json`.
 
+Example post data:
+```
+{
+    "firstname": "Test",
+    "lastname": "User",
+    "email": "user@example.org",
+    "username": "test_user",
+    "password": "mysecretpassword"
+}
+```
+
