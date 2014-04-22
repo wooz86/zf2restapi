@@ -3,7 +3,7 @@
 return array(
     'factories' => array(
 
-        // Repositories
+        // Entity Repositories
         'UserRepository' => 'Core\Factory\UserRepositoryFactory',
 
         // Entity Services
