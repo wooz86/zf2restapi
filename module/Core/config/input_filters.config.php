@@ -2,6 +2,6 @@
 
 return array(
     'factories' => array(
-        'UserInputFilter' => 'User\Factory\UserInputFilterFactory',
+        'UserInputFilter' => 'Core\Factory\UserInputFilterFactory',
     )
 );

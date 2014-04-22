@@ -2,6 +2,6 @@
 
 return array(
     'factories' => array(
-        'UserController'  => 'User\Factory\UserControllerFactory',
+        'UserController'  => 'Core\Factory\UserControllerFactory',
     )
 );

@@ -4,12 +4,12 @@ return array(
     'factories' => array(
 
         // Repositories
-        'UserRepository' => 'User\Factory\UserRepositoryFactory',
+        'UserRepository' => 'Core\Factory\UserRepositoryFactory',
 
         // Entity Services
-        'UserService'	 => 'User\Factory\UserServiceFactory',
+        'UserService'	 => 'Core\Factory\UserServiceFactory',
 
         // Forms
-        'UserForm'	     => 'User\Factory\UserFormFactory',
+        'UserForm'	     => 'Core\Factory\UserFormFactory',
     ),
 );

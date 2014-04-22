@@ -15,14 +15,14 @@ return array(
             ),
         ),
         'driver' => array(
-            'user_annotation_driver' => array(
+            'core_annotation_driver' => array(
                 'class' => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
                 'cache' => 'array',
                 'paths' => array(__DIR__ . '/../src/Entity')
             ),
             'orm_default' => array(
                 'drivers' => array(
-                    'User\Entity' => 'user_annotation_driver'
+                    'Core\Entity' => 'core_annotation_driver'
                 )
             )
         ),
