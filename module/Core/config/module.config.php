@@ -1,7 +1,6 @@
 <?php
 return array(
     'router' => include('routes.config.php'),
-    ),
     'view_manager' => array(
         'display_exceptions' => true,
         'strategies' => array('ViewJsonStrategy'),
