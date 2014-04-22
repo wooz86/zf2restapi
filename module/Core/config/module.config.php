@@ -2,7 +2,7 @@
 return array(
     'router' => include('routes.config.php'),
     'view_manager' => array(
-        'display_exceptions' => true,
+        'display_exceptions' => false,
         'strategies' => array('ViewJsonStrategy'),
     ),
     'doctrine' => array(
