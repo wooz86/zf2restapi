@@ -18,7 +18,8 @@ class DoctrineUserRepository extends DoctrineBaseRepository implements UserRepos
      */
     public function findAll()
     {
-        $result = parent::findAll();
+        $result   = parent::findAll();
+        $response = array();
 
         if(is_array($result)) {
             foreach($result as $k => $v) {

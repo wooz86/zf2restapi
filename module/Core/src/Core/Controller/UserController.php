@@ -19,7 +19,7 @@ use Core\Form\UserForm;
 class UserController extends AbstractRestfulController
 {
     /**
-     * @var Core\Service\UserServiceInterface
+     * @var UserServiceInterface
      */
     protected $userService;
 

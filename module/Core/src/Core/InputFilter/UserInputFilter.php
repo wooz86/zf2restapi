@@ -16,7 +16,7 @@ class UserInputFilter extends InputFilter
     /**
      * Setter for the User Repository
      *
-     * @param Core\Repository\UserRepositoryInterface $userRepository
+     * @param UserRepositoryInterface $userRepository
      */
     public function setUserRepository(UserRepositoryInterface $userRepository)
     {

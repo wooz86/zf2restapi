@@ -46,7 +46,7 @@ class UserForm extends Form
     /**
      * Setter for the User Entity
      *
-     * @param Core\Entity\User $userEntity
+     * @param User $userEntity
      */
     public function setUserEntity($userEntity)
     {

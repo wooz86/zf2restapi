@@ -29,8 +29,8 @@ class DoctrineUserService implements UserServiceInterface
     /**
      * Constructor method
      *
-     * @param Doctrine\Common\Persistence\ObjectManager $objectManager
-     * @param Core\Repository\UserRepositoryInterface   $userRepository
+     * @param ObjectManager           $objectManager
+     * @param UserRepositoryInterface $userRepository
      */
     public function __construct(ObjectManager $objectManager, UserRepositoryInterface $userRepository)
     {
@@ -52,7 +52,7 @@ class DoctrineUserService implements UserServiceInterface
      * Find user by ID
      *
      * @param int $id
-     * @return Core\Entity\User
+     * @return User
      */
     public function find($id)
     {
@@ -62,7 +62,7 @@ class DoctrineUserService implements UserServiceInterface
     /**
      * Create user
      *
-     * @param Core\Entity\User $user
+     * @param User $user
      */
     public function create($user)
     {
