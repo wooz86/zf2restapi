@@ -1,77 +1,70 @@
-ZendSkeletonApplication
+ZF2 REST API
 =======================
 
 Introduction
 ------------
-This is a simple, skeleton application using the ZF2 MVC layer and module
-systems. This application is meant to be used as a starting place for those
-looking to get their feet wet with ZF2.
+This is a simple REST API application using the ZF2 MVC layer and module
+systems. It is only serving users right now. It utilizes the Apigility modules
+ZF-ContentNegotiation (to take care of Content Negotiation) and ZF-API-PROBLEM (to return
+all exceptions and errors as JSON, with the content type of applicaion/problem+json).
 
 Installation
 ------------
 
-Using Composer (recommended)
-----------------------------
-The recommended way to get a working copy of this project is to clone the repository
-and use `composer` to install dependencies using the `create-project` command:
+### Clone repo
 
-    curl -s https://getcomposer.org/installer | php --
-    php composer.phar create-project -sdev --repository-url="https://packages.zendframework.com" zendframework/skeleton-application path/to/install
+`git clone https://github.com/wooz86/zf2restapi`
 
-Alternately, clone the repository and manually invoke `composer` using the shipped
-`composer.phar`:
-
-    cd my/project/dir
-    git clone git://github.com/zendframework/ZendSkeletonApplication.git
-    cd ZendSkeletonApplication
-    php composer.phar self-update
-    php composer.phar install
-
-(The `self-update` directive is to ensure you have an up-to-date `composer.phar`
-available.)
-
-Another alternative for downloading the project is to grab it via `curl`, and
-then pass it to `tar`:
-
-    cd my/project/dir
-    curl -#L https://github.com/zendframework/ZendSkeletonApplication/tarball/master | tar xz --strip-components=1
-
-You would then invoke `composer` to install dependencies per the previous
-example.
-
-Using Git submodules
---------------------
-Alternatively, you can install using native git submodules:
-
-    git clone git://github.com/zendframework/ZendSkeletonApplication.git --recursive
-
-Web Server Setup
-----------------
-
-### PHP CLI Server
-
-The simplest way to get started if you are using PHP 5.4 or above is to start the internal PHP cli-server in the root directory:
-
-    php -S 0.0.0.0:8080 -t public/ public/index.php
-
-This will start the cli-server on port 8080, and bind it to all network
-interfaces.
-
-**Note: ** The built-in CLI server is *for development only*.
-
-### Apache Setup
+### Setup Apache Virtual host
 
 To setup apache, setup a virtual host to point to the public/ directory of the
 project and you should be ready to go! It should look something like below:
 
-    <VirtualHost *:80>
-        ServerName zf2-tutorial.localhost
-        DocumentRoot /path/to/zf2-tutorial/public
-        SetEnv APPLICATION_ENV "development"
-        <Directory /path/to/zf2-tutorial/public>
-            DirectoryIndex index.php
-            AllowOverride All
-            Order allow,deny
-            Allow from all
-        </Directory>
-    </VirtualHost>
+```
+<VirtualHost zf2restapi.dev:80>
+    ServerName zf2restapi.dev
+    DocumentRoot /path/to/zf2restapi/public
+    SetEnv APPLICATION_ENV "development"
+    <Directory /path/to/zf2restapi/public>
+        DirectoryIndex index.php
+        AllowOverride All
+        Order allow,deny
+        Allow from all
+    </Directory>
+</VirtualHost>
+```
+
+### Install Composer dependencies
+
+The recommended way to download all dependencies of this project is to use the 
+locally bundled install of `composer` by running:
+`./composer.phar install`
+from the root of the project directory.
+
+### Set full file permissions for the data folder
+`chmod -R 777 data/`
+
+### Setup a local database
+* Create a database withe a name of for example `zf2restapi`
+* Copy file `config/autoload/db.local.php.dist` to `config/autoload/db.local.php` and set your database details and with credentials in this new file.
+* Execute command `./vendor/bin/doctrine-module migration:migrate` to run Doctrine migrations to setup database structure. What this does is that it runs all files in `data/migrations.
+
+
+Interacting with the API
+------------------------
+
+### Get all users
+```GET /users```
+To retrieve an array of all users, you send a GET request
+to the above URI.
+
+### Get user by ID
+```GET users/{id}```
+To retrieve a single user by its ID, you send a GET request
+to the above URI.
+
+### Create user
+```POST /users```
+To create a new user, you need to send the POST-data
+as JSON with a request header of `application/json`.
+
