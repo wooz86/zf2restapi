@@ -45,9 +45,9 @@ from the root of the project directory.
 `chmod -R 777 data/`
 
 ### Setup a local database
-* Create a database withe a name of for example `zf2restapi`
+* Create a database with a name of `zf2restapi`, for example.
 * Copy file `config/autoload/db.local.php.dist` to `config/autoload/db.local.php` and set your database details and with credentials in this new file.
-* Execute command `./vendor/bin/doctrine-module migration:migrate` to run Doctrine migrations to setup database structure. What this does is that it runs all files in `data/migrations.
+* In project root execute command `./vendor/bin/doctrine-module migration:migrate` to run Doctrine migrations to setup database structure. What this does is that it runs all files in `data/migrations`.
 
 
 Interacting with the API
@@ -66,7 +66,7 @@ to the above URI.
 ### Create user
 ```POST /users```
 To create a new user, you need to send the POST-data
-as JSON with a request header of `application/json`.
+as JSON with a request header of `Content-Type: application/json`.
 
 Example post data:
 ```
