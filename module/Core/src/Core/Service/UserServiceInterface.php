@@ -9,4 +9,5 @@ use Core\Repository\UserRepositoryInterface;
  */
 interface UserServiceInterface extends UserRepositoryInterface
 {
+    public function create($data);
 }
