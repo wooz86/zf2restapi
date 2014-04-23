@@ -2,8 +2,6 @@
 
 namespace Core\Controller;
 
-use Zend\Mvc\Controller\AbstractRestfulController;
-use Zend\EventManager\EventManagerInterface;
 use Zend\View\Model\JsonModel;
 use ZF\ApiProblem\ApiProblemResponse;
 use ZF\ApiProblem\ApiProblem;
@@ -14,9 +12,8 @@ use Core\Form\UserForm;
 /**
  * User Controller Class
  *
- * @see AbstractRestfulController
  */
-class UserController extends AbstractRestfulController
+class UserController extends BaseController
 {
     /**
      * @var UserServiceInterface
@@ -24,27 +21,9 @@ class UserController extends AbstractRestfulController
     protected $userService;
 
     /**
-     * @var Core\Form\UserForm
+     * @var UserForm
      */
     protected $userForm;
-
-    /**
-     * @var array
-     */
-    protected $allowedCollectionMethods = array(
-        'GET',
-        'POST',
-    );
-
-    /**
-     * @var array
-     */
-    protected $allowedResourceMethods = array(
-        'GET',
-        'PATCH',
-        'PUT',
-        'DELETE',
-    );
 
     /**
      * Setter for user service
@@ -67,45 +46,6 @@ class UserController extends AbstractRestfulController
     }
 
     /**
-     * Setter for the Event Manager
-     *
-     * @param EventManagerInterface $events
-     */
-    public function setEventManager(EventManagerInterface $events)
-    {
-        parent::setEventManager($events);
-        $events->attach('dispatch', array($this, 'checkOptions'), 10);
-    }
-
-    /**
-     * Check which HTTP options are allowed
-     *
-     * @param  MvcEvent $e
-     * @return ApiProblemResponse
-     */
-    public function checkOptions($e)
-    {
-        $matches  = $e->getRouteMatch();
-        $request  = $e->getRequest();
-        $method   = $request->getMethod();
-
-        if ($matches->getParam('id', false)) {
-            if (!in_array($method, $this->allowedResourceMethods)) {
-                 return new ApiProblemResponse(
-                    new ApiProblem(405, 'The HTTP method: '.$method.' is not allowed for this URI.')
-                );
-            }
-            return;
-        }
-
-        if (!in_array($method, $this->allowedCollectionMethods)) {
-            return new ApiProblemResponse(
-                new ApiProblem(405, 'The HTTP method '.$method.' is not allowed for this URI.')
-            );
-        }
-    }
-
-    /**
      * Fetch all users
      *
      * HTTP GET
@@ -117,7 +57,10 @@ class UserController extends AbstractRestfulController
         $users = $this->userService->findAll();
 
         if($users) {
-            return new JsonModel($users);
+            $this->collectionResponse['payload']['data'] = $users;
+            $this->collectionResponse['payload']['meta']['total'] = count($users);
+
+            return new JsonModel($this->collectionResponse);
         }
 
         return new ApiProblemResponse(
@@ -138,7 +81,9 @@ class UserController extends AbstractRestfulController
         $user = $this->userService->find($id);
 
         if($user) {
-            return new JsonModel($user);
+            $this->resourceResponse['payload']['data'] = $user;
+
+            return new JsonModel($this->resourceResponse);
         }
 
         return new ApiProblemResponse(
@@ -156,7 +101,6 @@ class UserController extends AbstractRestfulController
      */
     public function create($data)
     {
-        $isValid = false;
         $this->userForm->process($data);
         $isValid = $this->userForm->isValid();
         $validationMessages = $this->userForm->getMessages();

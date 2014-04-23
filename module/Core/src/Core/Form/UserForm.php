@@ -3,7 +3,8 @@
 namespace Core\Form;
 
 use Zend\Form\Form;
-use Zend\InputFilter\InputFilter;
+
+use Core\Entity\User;
 
 /**
  * User Form Class
@@ -11,7 +12,7 @@ use Zend\InputFilter\InputFilter;
 class UserForm extends Form
 {
     /**
-     * @var Core\Entity\User
+     * @var User
      */
     protected $userEntity;
 

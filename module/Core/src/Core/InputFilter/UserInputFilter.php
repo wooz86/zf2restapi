@@ -9,7 +9,7 @@ use Core\Repository\UserRepositoryInterface;
 class UserInputFilter extends InputFilter
 {
     /**
-     * @var Core\Repository\UserRepositoryInterface
+     * @var UserRepositoryInterface
      */
     protected $userRepository;
 
