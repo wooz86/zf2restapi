@@ -3,9 +3,7 @@
 namespace Core\Repository;
 
 use Doctrine\ORM\EntityRepository;
-use Doctrine\ORM\Mapping\ClassMetadata;
 
-use Core\Repository\BaseRepositoryInterface;
 
 /**
  * Doctrine Base Repository Class
@@ -28,7 +26,7 @@ abstract class DoctrineBaseRepository extends EntityRepository implements BaseRe
 	 * Find entity by ID
 	 *
 	 * @param int $id
-	 * @return Channel
+	 * @return Object
 	 */
 	public function find($id)
 	{

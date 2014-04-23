@@ -4,7 +4,6 @@ namespace Core\Service;
 
 use Doctrine\Common\Persistence\ObjectManager;
 
-use Core\Service\UserServiceInterface;
 use Core\Repository\UserRepositoryInterface;
 use Core\Entity\User;
 
@@ -17,12 +16,12 @@ use Core\Entity\User;
 class DoctrineUserService implements UserServiceInterface
 {
     /**
-     * @var Doctrine\Common\Persistence\ObjectManager
+     * @var ObjectManager
      */
     protected $objectManager;
 
     /**
-     * @var Core\Repository\UserRepositoryInterface
+     * @var UserRepositoryInterface
      */
     protected $userRepository;
 
@@ -63,11 +62,12 @@ class DoctrineUserService implements UserServiceInterface
      * Create user
      *
      * @param User $user
+     * @return void
      */
     public function create($user)
     {
         if(!$user instanceOf User) {
-            return false;
+            return null;
         }
 
         $this->objectManager->persist($user);

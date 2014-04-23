@@ -2,8 +2,6 @@
 
 namespace Core\Repository;
 
-use Core\Repository\DoctrineBaseRepository;
-use Core\Repository\UserRepositoryInterface;
 
 /**
  * Doctrine User Repository Class
