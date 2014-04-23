@@ -70,7 +70,7 @@ class User
     /**
      * Set Firstname
      *
-     * @param string $email
+     * @param string $firstname
      */
     public function setFirstname($firstname)
     {
@@ -90,7 +90,7 @@ class User
     /**
      * Set Lastname
      *
-     * @param string $email
+     * @param string $lastname
      */
     public function setLastname($lastname)
     {
@@ -130,7 +130,7 @@ class User
     /**
      * Set Username
      *
-     * @param string $email
+     * @param string $username
      */
     public function setUsername($username)
     {
@@ -171,7 +171,8 @@ class User
     /**
      * Generate a secure password hash
      *
-     * @param string
+     * @param string $password
+     * @return string
      */
     public static function hashPassword($password)
     {
