@@ -74,7 +74,7 @@ Example post data:
     "firstname": "Test",
     "lastname": "User",
     "email": "user@example.org",
-    "username": "test_user",
+    "username": "testuser",
     "password": "mysecretpassword"
 }
 ```
